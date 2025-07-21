@@ -39,7 +39,7 @@ $mainContent = ob_get_clean();
       <div class="bg-white p-6 rounded-xl shadow-sm">
         <?= $mainContent ?>
       </div>
-    </main>
+    </main>f
   </div>
 
   <!-- Footer -->

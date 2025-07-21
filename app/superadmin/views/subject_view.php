@@ -1,8 +1,8 @@
 <div class="max-w-7xl mx-auto p-6 space-y-8">
 
-  <!-- Add Exam Form (full width) -->
+  <!-- Add Subject Form (full width) -->
   <div class="bg-white p-6 rounded shadow max-w-full">
-    <h2 class="text-xl font-semibold mb-6">Add New Exam</h2>
+    <h2 class="text-xl font-semibold mb-6">Add New Subject</h2>
     <!-- Success Message for Add Form -->
 <?php if (isset($_SESSION['form_success'])): ?>
     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6" role="alert">
@@ -23,22 +23,22 @@
     <?php unset($_SESSION['form_errors']); ?>
 <?php endif; ?>
 
-    <form method="POST" action="add_exam_process.php" class="grid grid-cols-2 gap-6">
+    <form method="POST" action="add_subject_process.php" class="grid grid-cols-2 gap-6">
 
       <div>
-        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Exam Name</label>
+        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Subject Name</label>
         <input type="text" name="name" id="name" required
                class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                value="<?= htmlspecialchars($_SESSION['formData']['name'] ?? '') ?>">
       </div>
 
       <div>
-        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Type</label>
-        <?php $currentType = $exam['type'] ?? ''; ?>
-<select name="type" required class="w-full border p-2 rounded">
-    <option value="terminal" <?= $currentType === 'terminal' ? 'selected' : '' ?>>Terminal</option>
-    <option value="test" <?= $currentType === 'test' ? 'selected' : '' ?>>Test</option>
-</select>
+        <label for="code" class="block text-sm font-medium text-gray-700 mb-1">Code</label>
+        <?php $currentCode = $subject['code'] ?? ''; ?>
+        <input type="text" name="code" id="code" required
+               class="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+               value="<?= htmlspecialchars($_SESSION['formData']['code'] ?? '') ?>">
+      </div>
 
       </div>
 

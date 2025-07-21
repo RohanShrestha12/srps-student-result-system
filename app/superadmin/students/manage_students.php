@@ -8,7 +8,6 @@ Auth::requireLogin();
 
 $controller = new StudentController();
 $students = $controller->getStudents();
-
 $content = __DIR__ . '/../views/students_view.php'; 
 $activePage = 'manage_students';
 

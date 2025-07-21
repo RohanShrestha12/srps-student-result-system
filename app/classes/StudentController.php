@@ -9,11 +9,19 @@ class StudentController {
         $this->conn = DB::getConnection();
     }
 public function getStudents() {
-    $stmt = $this->conn->prepare("SELECT * FROM students");
+    $stmt = $this->conn->prepare(" SELECT students.*, departments.name AS department_name 
+        FROM students 
+        LEFT JOIN departments ON students.department_id = departments.id");
     $stmt->execute();
     return $stmt->get_result();
 }
 
+public function getStudentDepartment($name) {
+        $stmt = $this->conn->prepare("SELECT * FROM students WHERE department_id=(SELECT id FROM departments WHERE name=?)");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
 
     public function getStudentsLimited($limit = 100) {
         $stmt = $this->conn->prepare("SELECT * FROM students LIMIT ?");

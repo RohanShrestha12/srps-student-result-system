@@ -120,7 +120,7 @@
                         <td><?= htmlspecialchars($row['roll_no']) ?></td>
                         <td><?= htmlspecialchars($row['class']) ?></td>
                         <td><?= htmlspecialchars($row['batch']) ?></td>
-                        <td><?= htmlspecialchars($row['department']) ?></td>
+                            <td><?= htmlspecialchars($row['department_name'] ?? 'Unknown') ?></td>
                         <td><?= htmlspecialchars($row['gender']) ?></td>
                         <td>
                             <a href="/srps/app/superadmin/students/edit_student.php?id=<?= htmlspecialchars($row['id']) ?>" class="btn btn-sm btn-warning">Edit</a>
