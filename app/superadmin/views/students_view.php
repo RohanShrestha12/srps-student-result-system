@@ -52,11 +52,23 @@
                 value="<?= isset($_SESSION['formData']['batch']) ? htmlspecialchars($_SESSION['formData']['batch']) : '' ?>">
         </div>
         <div>
-            <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
-            <input type="text" name="department" id="department" required
-                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                value="<?= isset($_SESSION['formData']['department']) ? htmlspecialchars($_SESSION['formData']['department']) : '' ?>">
+            <label for="department_id" class="block text-sm font-medium text-gray-700">Department</label>
+            <select name="department_id" id="department_id" required
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="">Select Department</option>
+                <?php
+                // Fetch departments from the database
+                $departments = $controller->getDepartments();
+                while ($row = $departments->fetch_assoc()): ?>
+                    <option value="<?= htmlspecialchars($row['id']) ?>" <?= (isset($_SESSION['formData']['department_id']) && $_SESSION['formData']['department_id'] == $row['id']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($row['name']) ?>
+                    </option>
+                <?php endwhile; ?>
+                    
+            </select>
         </div>
+         
+
         <div>
             <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
             <select name="gender" id="gender" required
@@ -65,6 +77,14 @@
                 <option value="Male" <?= (isset($_SESSION['formData']['gender']) && $_SESSION['formData']['gender'] === 'Male') ? 'selected' : '' ?>>Male</option>
                 <option value="Female" <?= (isset($_SESSION['formData']['gender']) && $_SESSION['formData']['gender'] === 'Female') ? 'selected' : '' ?>>Female</option>
                 <option value="Other" <?= (isset($_SESSION['formData']['gender']) && $_SESSION['formData']['gender'] === 'Other') ? 'selected' : '' ?>>Other</option>
+            </select>
+        </div>
+        <div>
+            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+            <select name="status" id="status"
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option value="active" <?= (isset($_SESSION['formData']['status']) && $_SESSION['formData']['status'] === 'active') ? 'selected' : '' ?>>Active</option>
+                <option value="inactive" <?= (isset($_SESSION['formData']['status']) && $_SESSION['formData']['status'] === 'inactive') ? 'selected' : '' ?>>Inactive</option>
             </select>
         </div>
         <div class="md:col-span-2 text-center">

@@ -15,6 +15,18 @@ class ExamController {
         return $result;
     }
 
+    public function getExams() {
+        $stmt = $this->conn->prepare("SELECT * FROM exams");
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+    public function getTotalExams() {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) AS total FROM exams");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc()['total'];
+    }
+   
     public function getExamById($id) {
         $stmt = $this->conn->prepare("SELECT * FROM exams WHERE id = ?");
         $stmt->bind_param("i", $id);

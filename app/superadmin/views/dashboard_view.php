@@ -4,25 +4,25 @@
   <div class="col-md-3">
     <div class="bg-white p-5 rounded shadow text-center border-t-4 border-blue-600">
       <h2 class="text-lg font-semibold mb-2">Total Students</h2>
-      <p class="text-4xl text-blue-600 font-bold">128</p>
+      <p class="text-4xl text-blue-600 font-bold"><?php echo $controller->getTotalStudents(); ?></p>
     </div>
   </div>
   <div class="col-md-3">
     <div class="bg-white p-5 rounded shadow text-center border-t-4 border-green-600">
       <h2 class="text-lg font-semibold mb-2">Exams Held</h2>
-      <p class="text-4xl text-green-600 font-bold">12</p>
+      <p class="text-4xl text-green-600 font-bold"><?php echo $exams->getTotalExams(); ?></p>
     </div>
   </div>
   <div class="col-md-3">
     <div class="bg-white p-5 rounded shadow text-center border-t-4 border-purple-600">
       <h2 class="text-lg font-semibold mb-2">Predictions Done</h2>
-      <p class="text-4xl text-purple-600 font-bold">45</p>
+      <p class="text-4xl text-purple-600 font-bold">0</p>
     </div>
   </div>
   <div class="col-md-3">
     <div class="bg-white p-5 rounded shadow text-center border-t-4 border-yellow-500">
       <h2 class="text-lg font-semibold mb-2">Admins</h2>
-      <p class="text-4xl text-yellow-600 font-bold">3</p>
+      <p class="text-4xl text-yellow-600 font-bold"><?php echo $adminController->getTotalAdmins(); ?></p>
     </div>
   </div>
 </div>
