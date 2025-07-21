@@ -1,0 +1,41 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Redirect www to non-www (optional)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Clean URL: redirect index.php to /
+RewriteRule ^index\.php$ / [R=301,L]
+
+# Deny access to .env or config files
+<FilesMatch "\.(env|ini|log|sql)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default index
+DirectoryIndex index.php
+
+# Allow access to existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Route clean URLs to .php files
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+
+# Redirect to login page if not authenticated (except allowed pages)
+RewriteCond %{REQUEST_URI} !^/login\.php$ [NC]
+RewriteCond %{REQUEST_URI} !^/register\.php$ [NC]
+RewriteCond %{REQUEST_URI} !^/css/ [NC]
+RewriteCond %{REQUEST_URI} !^/js/ [NC]
+RewriteCond %{REQUEST_URI} !^/images/ [NC]
+RewriteCond %{HTTP_COOKIE} !PHPSESSID
+RewriteRule ^.*$ /login.php [R=302,L]
+
+# Custom 404 page
+ErrorDocument 404 /login.php
